@@ -5,6 +5,7 @@ package Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.OutputStream;
 
 import API.MGT;
@@ -33,7 +34,8 @@ public class TestApp {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		long stream_length_ms = 1000 * 5; // 10 seconds
+		long stream_seconds = 15;
+		long stream_length_ms = 1000 * stream_seconds;
 		PAT pat;
 		PMT pmt1, pmt2;
 		MGT mgt;
@@ -42,12 +44,12 @@ public class TestApp {
 		TransportStreamProducer ts_producer;
 		OutputStream os = null;
 		
-		int pat_ver = 0x1, pmt1_ver = 0x2, pmt2_ver = 0x3, mgt_ver = 0x4, tvct_ver = 0x5;
+		int pat_ver = 0x1, pmt1_ver = 0x2, pmt2_ver = 0x3, mgt_ver = 0x4, tvct_ver = 0x8;
 		int tsid = 0xABC;
 		int program_num1 = 0x35, program_num2 = 0x65;
 		int pmt1_pid = 1001/*3E9*/, pmt2_pid = 1002/*3EA*/;
 		int pmt1_stream1_pid = 0x101, pmt1_stream2_pid = 0x102, pmt2_stream1_pid = 0x201, pmt2_stream2_pid = 0x202;
-		int source_id1 = 0x5, source_id2 = 0x6;
+		int source_id1 = 0x501, source_id2 = 0x502;
 		
 		pmt1 = SITableFactory.createPMT(pmt1_pid, pmt1_ver, program_num1, 0);
 		pmt1.addStream(SITableFactory.createPMTStream(StreamType.ISO_IEC_11172_Video, pmt1_stream1_pid));
@@ -63,14 +65,14 @@ public class TestApp {
 		
 		tvct = SITableFactory.createTVCT(tvct_ver, tsid);
 		tvct_chan1 = SITableFactory.createTVCTChannel((new String("prog1")).toCharArray(), 
-				11, 1, 1, 0x1101, pmt1.getProgramNumber(), ServiceType.ATSC_DIGITAL_TELEVISION, source_id1);
+				11, 1, 4, 0x1101, pmt1.getProgramNumber(), ServiceType.ATSC_DIGITAL_TELEVISION, source_id1);
 		tvct_chan2 = SITableFactory.createTVCTChannel((new String("prog2")).toCharArray(), 
-				9, 1, 1, 0x0901, pmt2.getProgramNumber(), ServiceType.ATSC_DIGITAL_TELEVISION, source_id2);
+				9, 1, 4, 0x0901, pmt2.getProgramNumber(), ServiceType.ATSC_DIGITAL_TELEVISION, source_id2);
 		tvct.addChannel(tvct_chan1);
 		tvct.addChannel(tvct_chan2);
 		
 		mgt = SITableFactory.createMGT(mgt_ver);
-		mgt.addTable(SITableFactory.createMGTTable(TableType.Terrestrial_VCT_with_current_next_indicator_0, tvct.getTablePID(),
+		mgt.addTable(SITableFactory.createMGTTable(TableType.Terrestrial_VCT_with_current_next_indicator_1, tvct.getTablePID(),
 				tvct.getTableVersion(), 0/* don no this-_-*/));
 		
 		pat.setEndTime(stream_length_ms);
@@ -85,21 +87,24 @@ public class TestApp {
 		SITableRepository.addTable(mgt);
 		SITableRepository.addTable(tvct);
 		
-		System.out.println(SITableRepository.dump());
+		//System.out.println(SITableRepository.dump());
 		
 		try {
-			os = new FileOutputStream("test.ts");
+			os = new FileOutputStream("example.ts");
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-		ts_producer = new TransportStreamProducer(stream_length_ms, 1, os);
+		long bitrate = 19400000;  
+		ts_producer = new TransportStreamProducer("ATSC_Streamer",
+				bitrate, stream_length_ms, 10, os);
 		ts_producer.addSchedule(pat);
 		ts_producer.addSchedule(pmt1);
 		ts_producer.addSchedule(pmt2);
 		ts_producer.addSchedule(mgt);
 		ts_producer.addSchedule(tvct);
+		System.out.println("Expected file size: " + ts_producer.getBitrate()/8*stream_seconds);
 		ts_producer.start();
 	}
 }
