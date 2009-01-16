@@ -19,7 +19,7 @@ class EITEvent
 	while(remain_desc_bytes > 0)
 	{
 		Descriptor descriptor;
-		remain_desc_bytes -= lengthof(descriptor);
+		remain_desc_bytes -= (lengthof(descriptor)/8);
 	}
 };
 

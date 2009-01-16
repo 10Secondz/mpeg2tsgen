@@ -1,6 +1,6 @@
 %include "MultiString.fl"
 
-class TVCT
+class ETT
 {
 	unsigned int(8) table_id = 0xCC;
 	bit(1) section_syntax_indicator = 1;

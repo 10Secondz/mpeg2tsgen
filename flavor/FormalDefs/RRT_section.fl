@@ -60,7 +60,7 @@ class RRT
 	while(remain_desc_bytes > 0)
 	{
 		Descriptor descriptor;
-		remain_desc_bytes -= lengthof(descriptor);
+		remain_desc_bytes -= (lengthof(descriptor)/8);
 	}
 
 	unsigned int(32) CRC_32;
