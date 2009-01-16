@@ -27,13 +27,13 @@ public class PMTDefaultImpl extends SITableAbstractImpl implements PMT {
 	protected int PCR_PID = 0;
 	protected List<Descriptor> descs = new Vector<Descriptor>();
 	protected List<PMTStream> streams = new Vector<PMTStream>();
+	protected long interval_millis = 400;
 
 	public PMTDefaultImpl(int pid, int version, int program_num, int pcr_pid) {
 		version_number = version;
 		program_number = program_num;
 		PCR_PID = pcr_pid;
 		table_pid = pid;
-		interval_millis = 400; // default 400ms
 	}
 
 	/* (non-Javadoc)
@@ -50,6 +50,22 @@ public class PMTDefaultImpl extends SITableAbstractImpl implements PMT {
 	@Override
 	public int getTablePID() {
 		return table_pid;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#getIntervalMillis()
+	 */
+	@Override
+	public long getIntervalMillis() {
+		return interval_millis;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#setIntervalMillis(long)
+	 */
+	@Override
+	public void setIntervalMillis(long millisec) {
+		interval_millis = millisec;
 	}
 
 	/* (non-Javadoc)

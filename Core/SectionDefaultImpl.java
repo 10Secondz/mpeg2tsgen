@@ -3,10 +3,8 @@
  */
 package Core;
 
-import java.util.zip.CRC32;
 
 import API.BitOutputStream;
-import API.MyUTIL;
 import API.SITable;
 import API.Section;
 import API.TableID;
@@ -66,7 +64,7 @@ public class SectionDefaultImpl implements Section {
 		os.writeFromLSB(last_section_number, 8);
 		os.write(getPrivateDataBytes());
 
-		CRC32 crc = new CRC32();
+		Crc32Mpeg2 crc = new Crc32Mpeg2();
 		byte[] byte_array = os.toByteArray();
 		crc.update(byte_array, 0, byte_array.length-4);
 		return crc.getValue();

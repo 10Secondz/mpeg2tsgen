@@ -24,11 +24,8 @@ public class MGTDefaultImpl extends SITableAbstractImpl implements MGT {
 	protected int version_number = 0;
 	protected List<Descriptor> descs = new Vector<Descriptor>();
 	protected List<MGTTable> tables = new Vector<MGTTable>();
+	protected long interval_millis = 150;
 	
-	public MGTDefaultImpl() {
-		interval_millis = 150;
-	}
-
 	/* (non-Javadoc)
 	 * @see API.MGT#addTable(API.MGTTable)
 	 */
@@ -135,6 +132,22 @@ public class MGTDefaultImpl extends SITableAbstractImpl implements MGT {
 	@Override
 	public TableID getTableID() {
 		return TableID.MASTER_GUIDE_TABLE;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#getIntervalMillis()
+	 */
+	@Override
+	public long getIntervalMillis() {
+		return interval_millis;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#setIntervalMillis(long)
+	 */
+	@Override
+	public void setIntervalMillis(long millisec) {
+		interval_millis = millisec;
 	}
 
 	/* (non-Javadoc)

@@ -288,17 +288,22 @@ public class CVCTChannelDefaultImpl implements CVCTChannel {
 	 */
 	@Override
 	public byte[] toByteArray() {
-		BitOutputStream os = new BitOutputStream(getSizeInBytes());
+		BitOutputStream os = new BitOutputStream(getSizeInBytes()*Byte.SIZE);
 		
-		for(int n=0; n < short_name.length && n < 7; n++)
+		int n;
+		for(n=0; n < short_name.length && n < 7; n++)
 			os.write(short_name[n]);
+		for(; n < 7; n++)
+			os.write((char)0);
+
 		os.writeFromLSB(0xFF, 4); // 1111
 		os.writeFromLSB(major_channel_number, 10);
 		os.writeFromLSB(minor_channel_number, 10);
 		os.writeFromLSB(modulation_mode, 8);
 		os.writeFromLSB((int)carrier_frequency, 32);
 		os.writeFromLSB(channel_TSID, 16);
-		os.writeFromLSB(ETM_location, 1);
+		os.writeFromLSB(program_number, 16);
+		os.writeFromLSB(ETM_location, 2);
 		os.writeFromLSB(access_controlled, 1);
 		os.writeFromLSB(hidden, 1);
 		os.writeFromLSB(path_select, 1);
@@ -306,6 +311,7 @@ public class CVCTChannelDefaultImpl implements CVCTChannel {
 		os.writeFromLSB(hide_guide, 1);
 		os.writeFromLSB(0xFF, 3); // 111
 		os.writeFromLSB(service_type.getValue(), 6);
+		os.writeFromLSB(source_id, 16);
 		os.writeFromLSB(0xFF, 6); // 111111
 		os.writeFromLSB(getDescriptorsLength(), 10);
 

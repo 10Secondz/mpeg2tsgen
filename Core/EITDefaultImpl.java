@@ -24,13 +24,12 @@ public class EITDefaultImpl extends SITableAbstractImpl implements EIT {
 	protected int version_number = 0;
 	protected int source_id;
 	protected List<EITEvent> events = new Vector<EITEvent>();
-
+	protected long interval_millis = 500;
 	/**
 	 * @param pid
 	 */
 	public EITDefaultImpl(int pid) {
 		table_pid = pid;
-		interval_millis = 500;
 	}
 	
 	/* (non-Javadoc)
@@ -177,6 +176,22 @@ public class EITDefaultImpl extends SITableAbstractImpl implements EIT {
 		return table_pid;
 	}
 
+	/* (non-Javadoc)
+	 * @see API.SITable#getIntervalMillis()
+	 */
+	@Override
+	public long getIntervalMillis() {
+		return interval_millis;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#setIntervalMillis(long)
+	 */
+	@Override
+	public void setIntervalMillis(long millisec) {
+		interval_millis = millisec;
+	}
+	
 	/* (non-Javadoc)
 	 * @see API.SITable#getTableVersion()
 	 */

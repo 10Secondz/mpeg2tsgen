@@ -12,7 +12,6 @@ import API.SITable;
 public abstract class SITableAbstractImpl implements SITable {
 	protected long start_time = 0;
 	protected long end_time = 0;
-	protected long interval_millis;
 	protected int unique_id = UniqueIDServer.getUniqueID();
 
 	/* (non-Javadoc)
@@ -40,14 +39,6 @@ public abstract class SITableAbstractImpl implements SITable {
 	}
 
 	/* (non-Javadoc)
-	 * @see API.SITable#getIntervalMillis()
-	 */
-	@Override
-	public long getIntervalMillis() {
-		return interval_millis;
-	}
-
-	/* (non-Javadoc)
 	 * @see API.SITable#getStartTime()
 	 */
 	@Override
@@ -63,14 +54,6 @@ public abstract class SITableAbstractImpl implements SITable {
 		end_time = etime;
 		if (end_time < start_time)
 			start_time = end_time;
-	}
-
-	/* (non-Javadoc)
-	 * @see API.SITable#setIntervalMillis(long)
-	 */
-	@Override
-	public void setIntervalMillis(long millisec) {
-		interval_millis = millisec;
 	}
 
 	/* (non-Javadoc)

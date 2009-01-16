@@ -21,13 +21,13 @@ public class ETTDefaultImpl extends SITableAbstractImpl implements ETT {
 	protected int ETT_table_id_extension;
 	protected long ETM_id;
 	protected MultiString extended_text_message;
+	protected long interval_millis = 3000;
 	
 	/**
 	 * @param pid
 	 */
 	public ETTDefaultImpl(int pid) {
 		table_pid = pid;
-		interval_millis = 3000;
 	}
 	
 	/* (non-Javadoc)
@@ -102,6 +102,22 @@ public class ETTDefaultImpl extends SITableAbstractImpl implements ETT {
 	@Override
 	public void setVersionNumber(int version_number) {
 		this.version_number = version_number;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#getIntervalMillis()
+	 */
+	@Override
+	public long getIntervalMillis() {
+		return interval_millis;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#setIntervalMillis(long)
+	 */
+	@Override
+	public void setIntervalMillis(long millisec) {
+		interval_millis = millisec;
 	}
 
 	/* (non-Javadoc)
