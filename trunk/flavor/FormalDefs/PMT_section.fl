@@ -30,19 +30,21 @@ class PMT
 	unsigned int(8) last_section_numbe = 0;
 	skipbits(3); // reserved
 	unsigned int(13) PCR_PID;
+	skipbits(4); // reserved
 	unsigned int(12) program_info_length;
 	
 	int remain_desc_bytes = program_info_length;
 	while(remain_desc_bytes > 0)
 	{
 		Descriptor descriptor;
-		remain_desc_bytes -= lengthof(descriptor);
+		remain_desc_bytes -= (lengthof(descriptor)/8);
 	}
 
 	int remain_section_bytes = section_length - program_info_length - 9 - 4;
 	while (remain_section_bytes > 0)
 	{
 		PMTStream stream;
+		remain_section_bytes -= (lengthof(stream)/8);
 	}
 
  	unsigned int(32) CRC_32;
