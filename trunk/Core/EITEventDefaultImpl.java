@@ -128,7 +128,7 @@ public class EITEventDefaultImpl implements EITEvent {
 	 */
 	@Override
 	public byte[] toByteArray() {
-		BitOutputStream os = new BitOutputStream(getSizeInBytes());
+		BitOutputStream os = new BitOutputStream(getSizeInBytes()*Byte.SIZE);
 		os.writeFromLSB(0x11, 2); // reserved 11
 		os.writeFromLSB(event_id, 14);
 		os.writeFromLSB((int)start_time, 32);

@@ -23,11 +23,11 @@ public class PATDefaultImpl extends SITableAbstractImpl implements PAT {
 	protected int version_number = 0;
 	protected int transport_stream_id = 0;
 	protected List<PATProgram> programs = new Vector<PATProgram>();
+	protected long interval_millis = 100;
 
 	public PATDefaultImpl(int version, int tsid) {
 		version_number = version;
 		transport_stream_id = tsid;
-		interval_millis = 100;
 	}
 	
 	/* (non-Javadoc)
@@ -145,6 +145,22 @@ public class PATDefaultImpl extends SITableAbstractImpl implements PAT {
 	@Override
 	public void setVersionNumber(int version){
 		version_number = version;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#getIntervalMillis()
+	 */
+	@Override
+	public long getIntervalMillis() {
+		return interval_millis;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#setIntervalMillis(long)
+	 */
+	@Override
+	public void setIntervalMillis(long millisec) {
+		interval_millis = millisec;
 	}
 
 	/* (non-Javadoc)

@@ -25,9 +25,9 @@ public class CVCTDefaultImpl extends SITableAbstractImpl implements CVCT {
 	protected int transport_stream_id = 0;
 	protected List<CVCTChannel> channels = new Vector<CVCTChannel>();
 	protected List<Descriptor> descs = new Vector<Descriptor>();
+	protected long interval_millis = 400;
 	
 	public CVCTDefaultImpl() {
-		interval_millis = 400;
 	}
 	
 	/* (non-Javadoc)
@@ -141,6 +141,22 @@ public class CVCTDefaultImpl extends SITableAbstractImpl implements CVCT {
 	@Override
 	public int getTableVersion() {
 		return getVersionNumber();
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#getIntervalMillis()
+	 */
+	@Override
+	public long getIntervalMillis() {
+		return interval_millis;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#setIntervalMillis(long)
+	 */
+	@Override
+	public void setIntervalMillis(long millisec) {
+		interval_millis = millisec;
 	}
 
 	/* (non-Javadoc)

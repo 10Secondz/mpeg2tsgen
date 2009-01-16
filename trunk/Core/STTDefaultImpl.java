@@ -25,11 +25,8 @@ public class STTDefaultImpl extends SITableAbstractImpl implements STT {
 	protected int GPS_UTC_offset = 0;
 	protected int daylight_savings = 0;
 	protected List<Descriptor> descs = new Vector<Descriptor>();
+	protected long interval_millis = 1000;
 	
-	public STTDefaultImpl() {
-		interval_millis = 1000;
-	}
-
 	/* (non-Javadoc)
 	 * @see API.STT#getDatlightSavings()
 	 */
@@ -100,6 +97,22 @@ public class STTDefaultImpl extends SITableAbstractImpl implements STT {
 	@Override
 	public TableID getTableID() {
 		return TableID.SYSTEM_TIME_TABLE;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#getIntervalMillis()
+	 */
+	@Override
+	public long getIntervalMillis() {
+		return interval_millis;
+	}
+	
+	/* (non-Javadoc)
+	 * @see API.SITable#setIntervalMillis(long)
+	 */
+	@Override
+	public void setIntervalMillis(long millisec) {
+		interval_millis = millisec;
 	}
 
 	/* (non-Javadoc)
