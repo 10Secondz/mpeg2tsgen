@@ -2,8 +2,11 @@
 
 TABLES="PAT PMT MGT STT RRT TVCT CVCT EIT ETT"
 
+cd Generated
+
 for files in $TABLES; do
-	flavorc -gj $files_section.fl
-	flavorc -gx $files_section.fl
+	files+=_section.fl
+	flavorc -gj -t -oj flavor.Generated ../FormalDefs/$files
+	flavorc -gx ../FormalDefs/$files
 done
 
