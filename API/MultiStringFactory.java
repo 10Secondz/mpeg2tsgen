@@ -8,5 +8,5 @@ package API;
  *
  */
 public class MultiStringFactory {
-
+	// TODO:
 }
