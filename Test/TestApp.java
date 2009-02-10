@@ -8,20 +8,20 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import API.MGT;
-import API.MGTTable;
-import API.PAT;
-import API.PATProgram;
-import API.PMT;
-import API.PMTStream;
 import API.SITableFactory;
 import API.SITableRepository;
 import API.ServiceType;
 import API.StreamType;
-import API.TVCT;
-import API.TVCTChannel;
 import API.TableType;
-import API.TransportStreamProducer;
+import API.PSI.PAT;
+import API.PSI.PATProgram;
+import API.PSI.PMT;
+import API.PSI.PMTStream;
+import API.PSIP.MGT;
+import API.PSIP.MGTTable;
+import API.PSIP.TVCT;
+import API.PSIP.TVCTChannel;
+import API.Transport.TransportStreamProducer;
 
 
 /**
@@ -96,9 +96,10 @@ public class TestApp {
 			e.printStackTrace();
 		}
 		
-		long bitrate = 19400000;  
+		long bitrate = 19400000;
 		ts_producer = new TransportStreamProducer("ATSC_Streamer",
-				bitrate, stream_length_ms, 10, os);
+				bitrate, stream_length_ms, 10, os, true);
+		System.out.println(ts_producer.getBitrate());
 		ts_producer.addSchedule(pat);
 		ts_producer.addSchedule(pmt1);
 		ts_producer.addSchedule(pmt2);

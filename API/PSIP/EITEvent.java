@@ -1,8 +1,10 @@
 /**
  * 
  */
-package API;
+package API.PSIP;
 
+import API.Descriptor.DescriptorMethod;
+import API.MultiString.MultipleStringStructure;
 import Core.ByteRepresentation;
 import Core.XMLRepresentation;
 
@@ -46,7 +48,7 @@ public interface EITEvent extends ByteRepresentation, XMLRepresentation, Descrip
 	 * return a value of 'title_text()'.
 	 * @return
 	 */
-	MultiString getTitleText();
+	MultipleStringStructure getTitleText();
 	
 	/**
 	 * set a value of 'event_id'.
@@ -76,5 +78,5 @@ public interface EITEvent extends ByteRepresentation, XMLRepresentation, Descrip
 	 * set a value of 'title_text()'.
 	 * @param title_text
 	 */
-	void setTitleText(MultiString title_text);
+	void setTitleText(MultipleStringStructure title_text);
 }

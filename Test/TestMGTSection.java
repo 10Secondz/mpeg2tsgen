@@ -26,8 +26,8 @@ public class TestMGTSection {
 		/* This example is to show how to verify your implementation of SI tables
 		 *  by using 'flavor'(Formal Language for Audio-Visual Object Representation).
 		 */
-		API.TVCT tvct;
-		API.MGT table;
+		API.PSIP.TVCT tvct;
+		API.PSIP.MGT table;
 		int tvct_ver = 0x5, mgt_ver = 0x12;
 		int tsid = 0xABC;
 		

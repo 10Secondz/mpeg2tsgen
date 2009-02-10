@@ -1,17 +1,17 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import API.BitOutputStream;
-import API.Descriptor;
-import API.EITEvent;
-import API.MultiString;
 import API.MyUTIL;
+import API.Descriptor.Descriptor;
+import API.MultiString.MultipleStringStructure;
+import API.PSIP.EITEvent;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
@@ -22,7 +22,7 @@ public class EITEventDefaultImpl implements EITEvent {
 	protected long start_time;
 	protected int ETM_location;
 	protected int length_in_seconds;
-	protected MultiString title_text;
+	protected MultipleStringStructure title_text;
 	protected List<Descriptor> descs = new Vector<Descriptor>();
 
 	/* (non-Javadoc)
@@ -71,7 +71,7 @@ public class EITEventDefaultImpl implements EITEvent {
 	 * @see API.EITEvent#getTitleText()
 	 */
 	@Override
-	public MultiString getTitleText() {
+	public MultipleStringStructure getTitleText() {
 		return title_text;
 	}
 
@@ -108,10 +108,10 @@ public class EITEventDefaultImpl implements EITEvent {
 	}
 
 	/* (non-Javadoc)
-	 * @see API.EITEvent#setTitleText(API.MultiString)
+	 * @see API.EITEvent#setTitleText(API.MultipleStringStructure)
 	 */
 	@Override
-	public void setTitleText(MultiString title_text) {
+	public void setTitleText(MultipleStringStructure title_text) {
 		this.title_text = title_text;
 	}
 

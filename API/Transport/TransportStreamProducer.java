@@ -1,13 +1,17 @@
 /**
  * 
  */
-package API;
+package API.Transport;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.TreeMap;
+
+import API.SITable;
+import API.SITableRepository;
+import API.Section;
 
 
 /**
@@ -29,9 +33,17 @@ public class TransportStreamProducer implements Runnable {
 	private long current_time_ms = 0;
 	private long end_time_ms = 0;
 	private long next_timeout_ms = 0;
-	private int num_of_null_packets_for_idle;
-	private OutputStream output_pipe;
+	private int num_of_null_packets_for_idle = 0;
+	private int total_written_packets = 0;
+	private OutputStream output_pipe = null;
 	private TreeMap<Integer,Integer> continuity_counter_server = new TreeMap<Integer,Integer>();
+	
+	// variables for dummy PCR packets
+	private boolean bPCR_generate = false;
+	private long program_clock_reference_base = 0; // 33 bit field
+	private long program_clock_reference_extension = 0;
+	public static final int DUMMY_PCR_PID = 0x0909;
+	private int last_pcr_sent = 0;
 	
 	private volatile boolean threadSuspended = false;
 	private volatile Thread runningThread = null;
@@ -39,7 +51,7 @@ public class TransportStreamProducer implements Runnable {
 	private byte[] null_packet_bytes;
 
 	public TransportStreamProducer(String name, long bitrate_per_sec,
-			long running_time_ms, long schedule_time_granularity_ms, OutputStream os) {
+			long running_time_ms, long schedule_time_granularity_ms, OutputStream os, boolean bGenerateDummyPCR) {
 		this.name = new String(name);
 		num_of_null_packets_for_idle = (int)((bitrate_per_sec * schedule_time_granularity_ms)/(188*1000*8));
 		this.bitrate_per_sec = (188*1000*8*num_of_null_packets_for_idle) / schedule_time_granularity_ms;
@@ -47,6 +59,7 @@ public class TransportStreamProducer implements Runnable {
 		this.schedule_time_granularity_ms = schedule_time_granularity_ms;
 		output_pipe = os;
 		null_packet_bytes = TransportPacketFactory.createMPEGNullPacket().toByteArray();
+		bPCR_generate = bGenerateDummyPCR;
 	}
 
 	public String getName() {
@@ -137,23 +150,6 @@ public class TransportStreamProducer implements Runnable {
 			}else {
 				doIdleWork();
 			}
-/*
-			if (schedule_tree.size() > 0 && current_time_ms > next_timeout_ms) {
-				Integer val = schedule_tree.pollFirstEntry().getValue();
-				SITable table = SITableRepository.getTable(val.intValue());
-				if (table != null) {
-					if (current_time_ms < table.getEndTime()) {
-						writeTable(table);
-						addScheduleRuntime(table); // insert table again
-					}else {
-						writeNullPacket(num_of_null_packets_for_idle);
-					}
-					updateNextTimeout();
-				}
-			}else {
-				doIdleWork();
-			}
-*/
 		}
 		System.out.println("TS generation is done.");
 	}
@@ -174,6 +170,8 @@ public class TransportStreamProducer implements Runnable {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		total_written_packets += ntimes;
+		checkPCRSend();
 	}
 
 	private int writeTable(SITable table) {
@@ -193,8 +191,32 @@ public class TransportStreamProducer implements Runnable {
 				}
 			}
 		}
-
+		total_written_packets += written_packets;
+		checkPCRSend();
 		return written_packets;
+	}
+	
+	private void writePCRPacket(long pcr_base, long pcr_ext) {
+		try {
+			output_pipe.write(TransportPacketFactory.createEmptyPCRPacket(DUMMY_PCR_PID, pcr_base, pcr_ext).toByteArray());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		total_written_packets++;
+	}
+	
+	private void checkPCRSend() {
+		if (!bPCR_generate)
+			return;
+
+		if ( (total_written_packets - last_pcr_sent) < 1024)
+			return;
+		
+		long new_program_clock_reference_base =
+			program_clock_reference_base +
+			(188*(total_written_packets-last_pcr_sent)*27000)/bitrate_per_sec;
+		writePCRPacket(new_program_clock_reference_base, 0);
+		program_clock_reference_base = new_program_clock_reference_base;
 	}
 	
 	private int updateContinuityCounter(TransportPacket packet) {
@@ -218,7 +240,7 @@ public class TransportStreamProducer implements Runnable {
 		}
 		return 0;
 	}
-
+	
 	public synchronized void start() {
 		if (runningThread != null)
 			return;

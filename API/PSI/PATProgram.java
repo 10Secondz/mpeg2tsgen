@@ -1,7 +1,7 @@
 /**
  * 
  */
-package API;
+package API.PSI;
 
 import Core.ByteRepresentation;
 import Core.XMLRepresentation;

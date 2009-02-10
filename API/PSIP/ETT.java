@@ -1,7 +1,11 @@
 /**
  * 
  */
-package API;
+package API.PSIP;
+
+import API.SITable;
+import API.MultiString.MultipleStringStructure;
+
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
@@ -36,7 +40,7 @@ public interface ETT extends SITable {
 	 * return a value of 'extended_text_message()'.
 	 * @return
 	 */
-	MultiString getExtendedTextMessage();
+	MultipleStringStructure getExtendedTextMessage();
 	
 	/**
 	 * set a value of 'version_number'.
@@ -60,5 +64,5 @@ public interface ETT extends SITable {
 	 * set a value of 'extended_text_message()'.
 	 * @param text
 	 */
-	void setExtendedTextMessage(MultiString text);
+	void setExtendedTextMessage(MultipleStringStructure text);
 }

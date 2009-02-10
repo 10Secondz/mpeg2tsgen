@@ -34,7 +34,7 @@ public class RRTDimension {
         _F_parse = 8;
         dimension_name_length = _F_bs.getbits(_F_parse);
         Util.trace(_F_bs.getpos()-_F_parse, _F_parse, (int)dimension_name_length, "dimension_name_length" +  " (" + dimension_name_length + ")");
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString dimension_name_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure dimension_name_text");
         dimension_name_text = new MultiString();
         _F_ret += dimension_name_text.get(_F_bs);
         _F_parse = 3;
@@ -93,7 +93,7 @@ public class RRTDimension {
         else {
             XML.WriteXmlElement("<dimension_name_length bitLen=\"" + _F_parse + "\">" + dimension_name_length + "</dimension_name_length>");
         }
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString dimension_name_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure dimension_name_text");
         dimension_name_text = new MultiString();
         XML.IntoAClass("dimension_name_text", 0);
         _F_ret += dimension_name_text.putxml(_F_bs, bAttr);

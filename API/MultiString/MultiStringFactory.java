@@ -1,12 +1,22 @@
 /**
  * 
  */
-package API;
+package API.MultiString;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
  *
  */
 public class MultiStringFactory {
-	// TODO:
+	public static MultipleStringStructure createMultiStringStructure() {
+		return null;
+	}
+	
+	public static MultipleStringData createMultipleStringData() {
+		return null;
+	}
+	
+	public static StringSegment createStringSegment() {
+		return null;
+	}
 }

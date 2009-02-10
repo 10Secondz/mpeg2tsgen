@@ -25,8 +25,8 @@ public class TestTVCTSection {
 		/* This example is to show how to verify your implementation of SI tables
 		 *  by using 'flavor'(Formal Language for Audio-Visual Object Representation).
 		 */
-		API.TVCT table;
-		API.TVCTChannel tvct_chan1, tvct_chan2;
+		API.PSIP.TVCT table;
+		API.PSIP.TVCTChannel tvct_chan1, tvct_chan2;
 		int tvct_ver = 0x5;
 		int tsid = 0xABC;
 		int program_num1 = 0x35, program_num2 = 0x65;

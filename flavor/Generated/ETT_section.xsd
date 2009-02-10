@@ -6,7 +6,7 @@
 <xsd:include schemaLocation="fltypes.xsd"/>
 
 
-<xsd:complexType name="TVCT">
+<xsd:complexType name="ETT">
     <xsd:sequence>
         <xsd:element name="table_id" type="flUInt"/>
         <xsd:element name="section_syntax_indicator" type="flUInt"/>
@@ -27,6 +27,6 @@
     <xsd:attribute name="aligned" type="xsd:unsignedInt" use="optional"/>
 </xsd:complexType>
 
-<xsd:element name="TVCT" type="TVCT"/>
+<xsd:element name="ETT" type="ETT"/>
 
 </xsd:schema>

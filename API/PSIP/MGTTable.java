@@ -1,8 +1,10 @@
 /**
  * 
  */
-package API;
+package API.PSIP;
 
+import API.TableType;
+import API.Descriptor.DescriptorMethod;
 import Core.ByteRepresentation;
 import Core.XMLRepresentation;
 

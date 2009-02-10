@@ -4,13 +4,14 @@
 package Core;
 
 import API.BitOutputStream;
-import API.TransportPacket;
+import API.Transport.TransportPacket;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
  *
  */
 public class MPEGTransportPacketImpl implements TransportPacket {
+
 	protected int sync_byte = 0;
 	protected int transport_error_indicator = 0;
 	protected int payload_unit_start_indicator = 0;
@@ -20,6 +21,7 @@ public class MPEGTransportPacketImpl implements TransportPacket {
 	protected int adaptation_field_control = 0;
 	protected int continuity_counter = 0;
 	protected int pointer_field = 0;
+	protected byte[] adaptation_field_byte = null;
 	protected byte[] data_byte = null;
 
 	/* (non-Javadoc)
@@ -109,6 +111,14 @@ public class MPEGTransportPacketImpl implements TransportPacket {
 	public int getTransportScramblingControl() {
 		return transport_scrambling_control;
 	}
+	
+	/* (non-Javadoc)
+	 * @see API.Transport.TransportPacket#getAdaptationFieldByte()
+	 */
+	@Override
+	public byte[] getAdaptationFieldByte() {
+		return adaptation_field_byte;
+	}
 
 	/* (non-Javadoc)
 	 * @see API.TransportPacket#setAdaptationFieldControl(int)
@@ -181,6 +191,14 @@ public class MPEGTransportPacketImpl implements TransportPacket {
 	public void setTransportScramblingControl(int transport_scrambling_control) {
 		this.transport_scrambling_control = transport_scrambling_control;
 	}
+	
+	/* (non-Javadoc)
+	 * @see API.Transport.TransportPacket#setAdaptationFieldByte(byte[])
+	 */
+	@Override
+	public void setAdaptationFieldByte(byte[] adaptation_field_byte) {
+		this.adaptation_field_byte = adaptation_field_byte;		
+	}
 
 	/* (non-Javadoc)
 	 * @see API.ByteRepresentation#getSizeInBytes()
@@ -205,17 +223,17 @@ public class MPEGTransportPacketImpl implements TransportPacket {
 		os.writeFromLSB(adaptation_field_control, 2);
 		os.writeFromLSB(continuity_counter, 4);
 		
-		if (adaptation_field_control == 2 || adaptation_field_control == 3) {
-			// TODO: adaptaion_field() has not been implemented yet.
-			throw new UnsupportedOperationException();
-		}else if (adaptation_field_control == 1) {
+		if ((adaptation_field_control & 0x2) != 0) {
+			if (adaptation_field_byte == null)
+				os.writeFromLSB(0, 8); // adaptation_field_length:8bit
+			else
+				os.write(adaptation_field_byte);
+		}
+		if ((adaptation_field_control & 0x1) != 0) {
 			if (payload_unit_start_indicator == 1)
 				os.writeFromLSB(pointer_field, 8);
 			if (data_byte != null)
 				os.write(data_byte);
-		}else {
-			// 'adaptation_field_control == 0' is reserved. 
-			throw new UnsupportedOperationException();
 		}
 
 		return os.toByteArray();
