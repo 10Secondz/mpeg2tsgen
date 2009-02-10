@@ -1,15 +1,16 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import API.BitOutputStream;
-import API.ETT;
-import API.MultiString;
 import API.MyUTIL;
 import API.Section;
 import API.SectionFactory;
 import API.TableID;
+import API.MultiString.MultipleStringStructure;
+import API.PSIP.ETT;
+import Core.SITableAbstractImpl;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
@@ -20,7 +21,7 @@ public class ETTDefaultImpl extends SITableAbstractImpl implements ETT {
 	protected int version_number = 0;
 	protected int ETT_table_id_extension;
 	protected long ETM_id;
-	protected MultiString extended_text_message;
+	protected MultipleStringStructure extended_text_message;
 	protected long interval_millis = 3000;
 	
 	/**
@@ -50,7 +51,7 @@ public class ETTDefaultImpl extends SITableAbstractImpl implements ETT {
 	 * @see API.ETT#getExtendedTextMessage()
 	 */
 	@Override
-	public MultiString getExtendedTextMessage() {
+	public MultipleStringStructure getExtendedTextMessage() {
 		return extended_text_message;
 	}
 
@@ -89,10 +90,10 @@ public class ETTDefaultImpl extends SITableAbstractImpl implements ETT {
 	}
 
 	/* (non-Javadoc)
-	 * @see API.ETT#setExtendedTextMessage(API.MultiString)
+	 * @see API.ETT#setExtendedTextMessage(API.MultipleStringStructure)
 	 */
 	@Override
-	public void setExtendedTextMessage(MultiString text) {
+	public void setExtendedTextMessage(MultipleStringStructure text) {
 		extended_text_message = text;
 	}
 

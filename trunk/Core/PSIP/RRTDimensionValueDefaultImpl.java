@@ -1,20 +1,20 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import API.BitOutputStream;
-import API.MultiString;
 import API.MyUTIL;
-import API.RRTDimensionValue;
+import API.MultiString.MultipleStringStructure;
+import API.PSIP.RRTDimensionValue;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
  *
  */
 public class RRTDimensionValueDefaultImpl implements RRTDimensionValue {
-	protected MultiString abbrev_rating_value_text;
-	protected MultiString rating_value_text;
+	protected MultipleStringStructure abbrev_rating_value_text;
+	protected MultipleStringStructure rating_value_text;
 
 	/* (non-Javadoc)
 	 * @see API.RRTDimensionValue#getAbbrevRatingValueLength()
@@ -30,7 +30,7 @@ public class RRTDimensionValueDefaultImpl implements RRTDimensionValue {
 	 * @see API.RRTDimensionValue#getAbbrevRatingValueText()
 	 */
 	@Override
-	public MultiString getAbbrevRatingValueText() {
+	public MultipleStringStructure getAbbrevRatingValueText() {
 		return abbrev_rating_value_text;
 	}
 
@@ -48,23 +48,23 @@ public class RRTDimensionValueDefaultImpl implements RRTDimensionValue {
 	 * @see API.RRTDimensionValue#getRatingValueText()
 	 */
 	@Override
-	public MultiString getRatingValueText() {
+	public MultipleStringStructure getRatingValueText() {
 		return rating_value_text;
 	}
 
 	/* (non-Javadoc)
-	 * @see API.RRTDimensionValue#setAbbrevRatingValueText(API.MultiString)
+	 * @see API.RRTDimensionValue#setAbbrevRatingValueText(API.MultipleStringStructure)
 	 */
 	@Override
-	public void setAbbrevRatingValueText(MultiString text) {
+	public void setAbbrevRatingValueText(MultipleStringStructure text) {
 		abbrev_rating_value_text = text;
 	}
 
 	/* (non-Javadoc)
-	 * @see API.RRTDimensionValue#setRatingValueText(API.MultiString)
+	 * @see API.RRTDimensionValue#setRatingValueText(API.MultipleStringStructure)
 	 */
 	@Override
-	public void setRatingValueText(MultiString text) {
+	public void setRatingValueText(MultipleStringStructure text) {
 		rating_value_text = text;
 	}
 

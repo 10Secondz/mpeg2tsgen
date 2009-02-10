@@ -1,10 +1,11 @@
 /**
  * 
  */
-package API;
+package API.PSIP;
 
 import java.util.Iterator;
 
+import API.MultiString.MultipleStringStructure;
 import Core.ByteRepresentation;
 import Core.XMLRepresentation;
 
@@ -23,7 +24,7 @@ public interface RRTDimension extends ByteRepresentation, XMLRepresentation {
 	 * return a value of 'dimension_name_text()'.
 	 * @return
 	 */
-	MultiString getDimensionNameText();
+	MultipleStringStructure getDimensionNameText();
 	
 	/**
 	 * return a value of 'graduated_scale'.
@@ -59,7 +60,7 @@ public interface RRTDimension extends ByteRepresentation, XMLRepresentation {
 	 * set a value of 'dimension_name_text()'.
 	 * @param text
 	 */
-	void setDimensionNameText(MultiString text);
+	void setDimensionNameText(MultipleStringStructure text);
 	
 	/**
 	 * set a value of 'graduated_scale'.

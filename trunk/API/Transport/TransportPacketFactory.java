@@ -1,5 +1,6 @@
-package API;
+package API.Transport;
 
+import API.BitOutputStream;
 import Core.MPEGTransportPacketImpl;
 /**
  * 
@@ -36,6 +37,32 @@ public class TransportPacketFactory {
 		packet.setPID(0x1FFF);
 		packet.setTransportScramblingControl(0);
 		packet.setAdaptationFieldControl(1);
+		return packet;
+	}
+	
+	public static TransportPacket createEmptyPCRPacket(int pid, long program_clock_reference_base,
+			long program_clock_reference_extension) {
+		TransportPacket packet = new MPEGTransportPacketImpl();
+		packet.setSyncByte(0x47); // 0100 0111
+		packet.setTransportErrorIndicator(0);
+		packet.setPayloadUnitStartIndicator(0);
+		packet.setTransportPriority(0);
+		packet.setPID(pid);
+		packet.setTransportScramblingControl(0);
+		packet.setAdaptationFieldControl(2); // adaptation_field only!
+		
+		BitOutputStream os = new BitOutputStream(7*Byte.SIZE);
+		os.writeFromLSB(7, 8);
+		os.writeFromLSB((byte)((program_clock_reference_base>>25)&0x00FF), 8);
+		os.writeFromLSB((byte)((program_clock_reference_base>>17)&0x00FF), 8);
+		os.writeFromLSB((byte)((program_clock_reference_base>>9)&0x00FF), 8);
+		os.writeFromLSB((byte)((program_clock_reference_base>>1)&0x00FF), 8);
+		os.writeFromLSB((byte)((program_clock_reference_base)&0x0001), 1);
+		os.writeFromLSB(0, 6);
+		os.writeFromLSB((byte)((program_clock_reference_extension>>1)&0x00FF), 8);
+		os.writeFromLSB((byte)((program_clock_reference_extension)&0x0001), 1);
+		packet.setAdaptationFieldByte(os.toByteArray());
+
 		return packet;
 	}
 }

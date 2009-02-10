@@ -15,7 +15,7 @@ public class TestPMTSection {
 		/* This example is to show how to verify your implementation of SI tables
 		 *  by using 'flavor'(Formal Language for Audio-Visual Object Representation).
 		 */
-		API.PMT table;
+		API.PSI.PMT table;
 		int program_num2 = 0x65;
 		int pmt2_ver = 0x3;
 		int pmt2_pid = 1002/*3EA*/;

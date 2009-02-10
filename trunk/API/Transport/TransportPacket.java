@@ -1,7 +1,7 @@
 /**
  * 
  */
-package API;
+package API.Transport;
 
 import Core.ByteRepresentation;
 
@@ -26,6 +26,8 @@ public interface TransportPacket extends ByteRepresentation {
 	
 	int getContinuityCounter();
 	
+	byte[] getAdaptationFieldByte();
+	
 	byte[] getDataByte();
 	
 	int getAvailableDataSizeInBytes();
@@ -45,6 +47,8 @@ public interface TransportPacket extends ByteRepresentation {
 	void setAdaptationFieldControl(int adaptation_field_control);
 	
 	void setContinuityCounter(int continuity_counter);
+	
+	void setAdaptationFieldByte(byte[] adaptation_field_byte);
 	
 	void setDataByte(byte[] data_byte);
 }

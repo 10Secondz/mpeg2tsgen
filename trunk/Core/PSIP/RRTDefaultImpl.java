@@ -1,21 +1,22 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import API.BitOutputStream;
-import API.Descriptor;
-import API.MultiString;
 import API.MyUTIL;
-import API.RRT;
-import API.RRTDimension;
 import API.Section;
 import API.SectionFactory;
 import API.TableID;
+import API.Descriptor.Descriptor;
+import API.MultiString.MultipleStringStructure;
+import API.PSIP.RRT;
+import API.PSIP.RRTDimension;
+import Core.SITableAbstractImpl;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
@@ -24,7 +25,7 @@ import API.TableID;
 public class RRTDefaultImpl extends SITableAbstractImpl implements RRT {
 	protected int rating_region;
 	protected int version_number = 0;
-	protected MultiString rating_region_name_text;
+	protected MultipleStringStructure rating_region_name_text;
 	protected List<RRTDimension> dimensions = new Vector<RRTDimension>();
 	protected List<Descriptor> descs = new Vector<Descriptor>();
 	protected long interval_millis = 60000;
@@ -109,7 +110,7 @@ public class RRTDefaultImpl extends SITableAbstractImpl implements RRT {
 	 * @see API.RRT#getRatingRegionNameText()
 	 */
 	@Override
-	public MultiString getRatingRegionNameText() {
+	public MultipleStringStructure getRatingRegionNameText() {
 		return rating_region_name_text;
 	}
 
@@ -168,10 +169,10 @@ public class RRTDefaultImpl extends SITableAbstractImpl implements RRT {
 	}
 
 	/* (non-Javadoc)
-	 * @see API.RRT#setRatingRegionNameText(API.MultiString)
+	 * @see API.RRT#setRatingRegionNameText(API.MultipleStringStructure)
 	 */
 	@Override
-	public void setRatingRegionNameText(MultiString text) {
+	public void setRatingRegionNameText(MultipleStringStructure text) {
 		rating_region_name_text = text;
 	}
 

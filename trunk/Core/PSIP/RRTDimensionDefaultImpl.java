@@ -1,24 +1,24 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import API.BitOutputStream;
-import API.MultiString;
 import API.MyUTIL;
-import API.RRTDimension;
-import API.RRTDimensionValue;
+import API.MultiString.MultipleStringStructure;
+import API.PSIP.RRTDimension;
+import API.PSIP.RRTDimensionValue;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
  *
  */
 public class RRTDimensionDefaultImpl implements RRTDimension {
-	protected MultiString dimension_name_text;
+	protected MultipleStringStructure dimension_name_text;
 	protected int graduated_scale = 0;
 	protected List<RRTDimensionValue> values = new Vector<RRTDimensionValue>();
 
@@ -57,7 +57,7 @@ public class RRTDimensionDefaultImpl implements RRTDimension {
 	 * @see API.RRTDimension#getDimensionNameText()
 	 */
 	@Override
-	public MultiString getDimensionNameText() {
+	public MultipleStringStructure getDimensionNameText() {
 		return dimension_name_text;
 	}
 
@@ -135,10 +135,10 @@ public class RRTDimensionDefaultImpl implements RRTDimension {
 	}
 
 	/* (non-Javadoc)
-	 * @see API.RRTDimension#setDimensionNameText(API.MultiString)
+	 * @see API.RRTDimension#setDimensionNameText(API.MultipleStringStructure)
 	 */
 	@Override
-	public void setDimensionNameText(MultiString text) {
+	public void setDimensionNameText(MultipleStringStructure text) {
 		dimension_name_text = text;
 	}
 

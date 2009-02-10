@@ -1,8 +1,10 @@
 /**
  * 
  */
-package API;
+package API.PSI;
 
+import API.StreamType;
+import API.Descriptor.DescriptorMethod;
 import Core.ByteRepresentation;
 import Core.XMLRepresentation;
 

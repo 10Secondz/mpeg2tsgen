@@ -31,13 +31,13 @@ public class RRTDimensionValue {
         _F_parse = 8;
         abbrev_rating_value_length = _F_bs.getbits(_F_parse);
         Util.trace(_F_bs.getpos()-_F_parse, _F_parse, (int)abbrev_rating_value_length, "abbrev_rating_value_length" +  " (" + abbrev_rating_value_length + ")");
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString abbrev_rating_value_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure abbrev_rating_value_text");
         abbrev_rating_value_text = new MultiString();
         _F_ret += abbrev_rating_value_text.get(_F_bs);
         _F_parse = 8;
         rating_value_length = _F_bs.getbits(_F_parse);
         Util.trace(_F_bs.getpos()-_F_parse, _F_parse, (int)rating_value_length, "rating_value_length" +  " (" + rating_value_length + ")");
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString rating_value_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure rating_value_text");
         rating_value_text = new MultiString();
         _F_ret += rating_value_text.get(_F_bs);
         Util.trace(_F_bs.getpos(), 0, (int)0, "end RRTDimensionValue");
@@ -66,7 +66,7 @@ public class RRTDimensionValue {
         else {
             XML.WriteXmlElement("<abbrev_rating_value_length bitLen=\"" + _F_parse + "\">" + abbrev_rating_value_length + "</abbrev_rating_value_length>");
         }
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString abbrev_rating_value_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure abbrev_rating_value_text");
         abbrev_rating_value_text = new MultiString();
         XML.IntoAClass("abbrev_rating_value_text", 0);
         _F_ret += abbrev_rating_value_text.putxml(_F_bs, bAttr);
@@ -79,7 +79,7 @@ public class RRTDimensionValue {
         else {
             XML.WriteXmlElement("<rating_value_length bitLen=\"" + _F_parse + "\">" + rating_value_length + "</rating_value_length>");
         }
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString rating_value_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure rating_value_text");
         rating_value_text = new MultiString();
         XML.IntoAClass("rating_value_text", 0);
         _F_ret += rating_value_text.putxml(_F_bs, bAttr);

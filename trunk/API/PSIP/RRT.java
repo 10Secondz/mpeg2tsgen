@@ -1,9 +1,14 @@
 /**
  * 
  */
-package API;
+package API.PSIP;
 
 import java.util.Iterator;
+
+import API.SITable;
+import API.Descriptor.DescriptorMethod;
+import API.MultiString.MultipleStringStructure;
+
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
@@ -32,7 +37,7 @@ public interface RRT extends SITable, DescriptorMethod {
 	 * return a value of 'rating_region_name_text()'.
 	 * @return
 	 */
-	MultiString getRatingRegionNameText();
+	MultipleStringStructure getRatingRegionNameText();
 
 	/**
 	 * return a value of 'dimensions_defined'.
@@ -75,7 +80,7 @@ public interface RRT extends SITable, DescriptorMethod {
 	 * set a value of 'rating_region_name_text()'.
 	 * @param text
 	 */
-	void setRatingRegionNameText(MultiString text);
+	void setRatingRegionNameText(MultipleStringStructure text);
 	
 	/**
 	 * set a RRTDimension instance.

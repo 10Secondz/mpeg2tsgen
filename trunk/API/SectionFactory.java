@@ -11,6 +11,13 @@ import Core.SectionDefaultImpl;
  */
 public class SectionFactory {
 
+	/**
+	 * @param table
+	 * @param transport_stream_id
+	 * @param section_num
+	 * @param last_section_num
+	 * @return
+	 */
 	public static Section createPATSection(SITable table, int transport_stream_id,
 			int section_num, int last_section_num) {
 		Section section = new SectionDefaultImpl(table, 1);
@@ -23,6 +30,11 @@ public class SectionFactory {
 		return section;
 	}
 
+	/**
+	 * @param table
+	 * @param program_number
+	 * @return
+	 */
 	public static Section createPMTSection(SITable table, int program_number) {
 		Section section = new SectionDefaultImpl(table, 1);
 		section.setPrivateIndicator(0);
@@ -35,6 +47,10 @@ public class SectionFactory {
 		return section;
 	}
 	
+	/**
+	 * @param table
+	 * @return
+	 */
 	public static Section createMGTSection(SITable table) {
 		Section section = new SectionDefaultImpl(table, 1);
 		section.setPrivateIndicator(1);
@@ -49,6 +65,13 @@ public class SectionFactory {
 		return section;
 	}
 
+	/**
+	 * @param table
+	 * @param transport_stream_id
+	 * @param section_num
+	 * @param last_section_num
+	 * @return
+	 */
 	public static Section createTVCTSection(SITable table, int transport_stream_id,
 			int section_num, int last_section_num) {
 		Section section = new SectionDefaultImpl(table, 1);
@@ -63,6 +86,13 @@ public class SectionFactory {
 		return section;
 	}
 	
+	/**
+	 * @param table
+	 * @param transport_stream_id
+	 * @param section_num
+	 * @param last_section_num
+	 * @return
+	 */
 	public static Section createCVCTSection(SITable table, int transport_stream_id,
 			int section_num, int last_section_num) {
 		Section section = new SectionDefaultImpl(table, 1);
@@ -77,6 +107,10 @@ public class SectionFactory {
 		return section;
 	}
 	
+	/**
+	 * @param table
+	 * @return
+	 */
 	public static Section createSTTSection(SITable table) {
 		Section section = new SectionDefaultImpl(table, 1);
 		section.setPrivateIndicator(1);
@@ -90,6 +124,13 @@ public class SectionFactory {
 		return section;
 	}
 	
+	/**
+	 * @param table
+	 * @param rating_region
+	 * @param section_num
+	 * @param last_section_num
+	 * @return
+	 */
 	public static Section createRRTSection(SITable table, int rating_region,
 			int section_num, int last_section_num) {
 		Section section = new SectionDefaultImpl(table, 1);
@@ -104,6 +145,13 @@ public class SectionFactory {
 		return section;
 	}
 	
+	/**
+	 * @param table
+	 * @param source_id
+	 * @param section_num
+	 * @param last_section_num
+	 * @return
+	 */
 	public static Section createEITSection(SITable table, int source_id,
 			int section_num, int last_section_num) {
 		Section section = new SectionDefaultImpl(table, 1);
@@ -118,6 +166,11 @@ public class SectionFactory {
 		return section;
 	}
 	
+	/**
+	 * @param table
+	 * @param table_id_extension
+	 * @return
+	 */
 	public static Section createETTSection(SITable table, int table_id_extension) {
 		Section section = new SectionDefaultImpl(table, 1);
 		section.setPrivateIndicator(1);

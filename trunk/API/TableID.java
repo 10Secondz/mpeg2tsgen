@@ -8,17 +8,53 @@ package API;
  *
  */
 public enum TableID {
+	/**
+	 * 
+	 */
 	PROGRAM_ASSOCIATION_TABLE(0x00),
+	/**
+	 * 
+	 */
 	CONDITIONAL_ACCESS_TABLE(0x01),
+	/**
+	 * 
+	 */
 	PROGRAM_MAP_TABLE(0x02),
+	/**
+	 * 
+	 */
 	MASTER_GUIDE_TABLE(0xC7),
+	/**
+	 * 
+	 */
 	TERRESTRIAL_VIRTUAL_CHANNEL_TABLE(0xC8),
+	/**
+	 * 
+	 */
 	CABLE_VIRTUAL_CHANNEL_TABLE(0xC9),
+	/**
+	 * 
+	 */
 	RATING_REGION_TABLE(0xCA),
+	/**
+	 * 
+	 */
 	EVENT_INFORMATION_TABLE(0xCB),
+	/**
+	 * 
+	 */
 	EVENT_TEXT_TABLE(0xCC),
+	/**
+	 * 
+	 */
 	SYSTEM_TIME_TABLE(0xCD),
+	/**
+	 * 
+	 */
 	DIRECTED_CHANNEL_CHANGE_TABLE(0xD3),
+	/**
+	 * 
+	 */
 	FORBIDDEN(0xFF);
 
 	private int value;
@@ -27,6 +63,9 @@ public enum TableID {
 		value = val;
 	}
 	
+	/**
+	 * @return
+	 */
 	public int getValue() {
 		return value;
 	}

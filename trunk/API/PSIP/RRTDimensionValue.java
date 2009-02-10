@@ -1,8 +1,9 @@
 /**
  * 
  */
-package API;
+package API.PSIP;
 
+import API.MultiString.MultipleStringStructure;
 import Core.ByteRepresentation;
 import Core.XMLRepresentation;
 
@@ -22,7 +23,7 @@ public interface RRTDimensionValue extends ByteRepresentation, XMLRepresentation
 	 * return a value of 'abbrev_rating_value_text()'.
 	 * @return
 	 */
-	MultiString getAbbrevRatingValueText();
+	MultipleStringStructure getAbbrevRatingValueText();
 
 	/**
 	 * return a value of 'rating_value_length'.
@@ -34,17 +35,17 @@ public interface RRTDimensionValue extends ByteRepresentation, XMLRepresentation
 	 * return a value of 'rating_value_text'.
 	 * @return
 	 */
-	MultiString getRatingValueText();
+	MultipleStringStructure getRatingValueText();
 	
 	/**
 	 * set a value of 'abbrev_rating_value_text()'.
 	 * @param text
 	 */
-	void setAbbrevRatingValueText(MultiString text);
+	void setAbbrevRatingValueText(MultipleStringStructure text);
 	
 	/**
 	 * set a value of 'rating_value_text()'.
 	 * @param text
 	 */
-	void setRatingValueText(MultiString text);
+	void setRatingValueText(MultipleStringStructure text);
 }

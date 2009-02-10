@@ -1,20 +1,21 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import API.BitOutputStream;
-import API.CVCT;
-import API.CVCTChannel;
-import API.Descriptor;
 import API.MyUTIL;
 import API.Section;
 import API.SectionFactory;
 import API.TableID;
+import API.Descriptor.Descriptor;
+import API.PSIP.CVCT;
+import API.PSIP.CVCTChannel;
+import Core.SITableAbstractImpl;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)

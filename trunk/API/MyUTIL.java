@@ -10,6 +10,10 @@ package API;
 public class MyUTIL {
 	protected static final String white_space = " ";
 
+	/**
+	 * @param length
+	 * @return
+	 */
 	public static String whiteSpaceStr(int length) {
 		if (length < 0)
 			throw new IllegalArgumentException();
@@ -19,6 +23,10 @@ public class MyUTIL {
 		return str;
 	}
 	
+	/**
+	 * @param b
+	 * @return
+	 */
 	public static String toBinaryString(byte b) {
 		String str = new String();
 		for(int s = Byte.SIZE-1; s >= 0; s--) {
@@ -30,6 +38,10 @@ public class MyUTIL {
 		return str;
 	}
 	
+	/**
+	 * @param bs
+	 * @return
+	 */
 	public static String toBinaryString(byte[] bs) {
 		if (bs == null)
 			throw new NullPointerException();
@@ -44,6 +56,11 @@ public class MyUTIL {
 		return str;
 	}
 	
+	/**
+	 * @param bs
+	 * @param num_bytes_in_line
+	 * @return
+	 */
 	public static String toBinaryString(byte[] bs, int num_bytes_in_line) {
 		if (bs == null)
 			throw new NullPointerException();
@@ -60,6 +77,10 @@ public class MyUTIL {
 		return str;
 	}
 	
+	/**
+	 * @param i
+	 * @return
+	 */
 	public static String toBinaryString(int i) {
 		String str = new String();
 		for(int s = Integer.SIZE-1; s >= 0; s--) {
@@ -71,6 +92,10 @@ public class MyUTIL {
 		return str;
 	}
 	
+	/**
+	 * @param l
+	 * @return
+	 */
 	public static String toBinaryString(long l) {
 		String str = new String();
 		for(int s = Long.SIZE-1; s >= 0; s--) {
@@ -82,6 +107,10 @@ public class MyUTIL {
 		return str;
 	}
 	
+	/**
+	 * @param d
+	 * @return
+	 */
 	public static String toBinaryString(short d) {
 		String str = new String();
 		for(int s = Short.SIZE-1; s >= 0; s--) {

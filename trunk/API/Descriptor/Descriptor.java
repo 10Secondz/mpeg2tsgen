@@ -1,4 +1,4 @@
-package API;
+package API.Descriptor;
 
 import Core.ByteRepresentation;
 /**
@@ -22,4 +22,16 @@ public interface Descriptor extends ByteRepresentation, XMLRepresentation {
 	 * @return descriptor_length
 	 */
 	int getDescriptorLength();
+	
+	/**
+	 * return a content.
+	 * @return DescriptorContent instance
+	 */
+	DescriptorContent getContent();
+	
+	/**
+	 * set a content of a Descriptor.
+	 * @param content
+	 */
+	void setContent(DescriptorContent content);
 }

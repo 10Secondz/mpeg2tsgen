@@ -1,17 +1,17 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import API.BitOutputStream;
-import API.CVCTChannel;
-import API.Descriptor;
 import API.MyUTIL;
 import API.ServiceType;
+import API.Descriptor.Descriptor;
+import API.PSIP.CVCTChannel;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)

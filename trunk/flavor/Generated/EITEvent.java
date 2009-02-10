@@ -71,7 +71,7 @@ public class EITEvent {
         _F_parse = 8;
         title_length = _F_bs.getbits(_F_parse);
         Util.trace(_F_bs.getpos()-_F_parse, _F_parse, (int)title_length, "title_length" +  " (" + title_length + ")");
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString title_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure title_text");
         title_text = new MultiString();
         _F_ret += title_text.get(_F_bs);
         _F_parse = 4;
@@ -214,7 +214,7 @@ public class EITEvent {
         else {
             XML.WriteXmlElement("<title_length bitLen=\"" + _F_parse + "\">" + title_length + "</title_length>");
         }
-        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultiString title_text");
+        Util.trace(_F_bs.getpos(), 0, (int)0, "processing MultipleStringStructure title_text");
         title_text = new MultiString();
         XML.IntoAClass("title_text", 0);
         _F_ret += title_text.putxml(_F_bs, bAttr);

@@ -1,20 +1,21 @@
 /**
  * 
  */
-package Core;
+package Core.PSIP;
 
 import java.util.Iterator;
 import java.util.List;
 import java.util.Vector;
 
 import API.BitOutputStream;
-import API.Descriptor;
-import API.MGT;
-import API.MGTTable;
 import API.MyUTIL;
 import API.Section;
 import API.SectionFactory;
 import API.TableID;
+import API.Descriptor.Descriptor;
+import API.PSIP.MGT;
+import API.PSIP.MGTTable;
+import Core.SITableAbstractImpl;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)

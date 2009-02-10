@@ -25,6 +25,10 @@ public class SITableRepository {
 		return singleton_instance;
 	}
 	
+	/**
+	 * @param table
+	 * @return
+	 */
 	public static synchronized boolean addTable(SITable table) {
 		if (getInstance().si_tables.put(new Integer(table.getUniqueID()), table) == null)
 			return true;
@@ -32,6 +36,10 @@ public class SITableRepository {
 		return false;
 	}
 
+	/**
+	 * @param table
+	 * @return
+	 */
 	public static synchronized boolean removeTable(SITable table) {
 		if (getInstance().si_tables.remove(new Integer(table.getUniqueID())) == null)
 			return false;
@@ -39,10 +47,17 @@ public class SITableRepository {
 		return true;
 	}
 	
+	/**
+	 * @param unique_id
+	 * @return
+	 */
 	public static synchronized SITable getTable(int unique_id) {
 		return getInstance().si_tables.get(new Integer(unique_id)).clone(); 
 	}
 
+	/**
+	 * @return
+	 */
 	public static synchronized SITable[] getAllTables() {
 		Collection<SITable> col = getInstance().si_tables.values();
 		SITable[] tables = new SITable[col.size()];
@@ -53,10 +68,16 @@ public class SITableRepository {
 		return tables;
 	}
 	
+	/**
+	 * @return
+	 */
 	public static synchronized int getTableSize() {
 		return getInstance().si_tables.size();
 	}
 	
+	/**
+	 * @return
+	 */
 	public static String dump() {
 		String str = new String();
 		SITable[] tables = getAllTables();

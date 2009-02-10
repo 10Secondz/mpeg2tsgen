@@ -1,7 +1,7 @@
 /**
  * 
  */
-package API;
+package API.Descriptor;
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
@@ -32,5 +32,41 @@ public enum DescriptorTag {
 	
 	public int getValue() {
 		return value;
+	}
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Enum#toString()
+	 */
+	public String toString() {
+		switch(value) {
+		case 0x80:
+			return "STUFFING";
+		case 0x81:
+			return "AC3_AUDIO";
+		case 0x86:
+			return "CAPTION_SERVICE";
+		case 0x87:
+			return "CONTENT_ADVISORY";
+		case 0xA0:
+			return "EXTENDED_CHANNEL_NAME";
+		case 0xA1:
+			return "SERVICE_LOCATION";
+		case 0xA2:
+			return "TIMESHIFTED_SERVICE";
+		case 0xA3:
+			return "COMPONENT_NAME";
+		case 0xA8:
+			return "DCC_DEPARTING_REQUEST";
+		case 0xA9:
+			return "DCC_ARRIVING_REQUEST";
+		case 0xAA:
+			return "REDISTRIBUTION_CONTROL";
+		case 0xAD:
+			return "ATSC_PRIVATE_INFORMATION";
+		case 0xB6:
+			return "CONTENT_IDENTIFIER";
+		default:
+			return "UNKNOWN";
+		}
 	}
 }

@@ -24,9 +24,9 @@ public class TestPatSection {
 		 */
 
 		/* First part : generate table with API */
-		API.PAT table = SITableFactory.createPAT(15, 0xABC);
-		API.PATProgram program1 = SITableFactory.createPATProgram(0xC0, 0xD0);
-		API.PATProgram program2 = SITableFactory.createPATProgram(0xE0, 0xF0);
+		API.PSI.PAT table = SITableFactory.createPAT(15, 0xABC);
+		API.PSI.PATProgram program1 = SITableFactory.createPATProgram(0xC0, 0xD0);
+		API.PSI.PATProgram program2 = SITableFactory.createPATProgram(0xE0, 0xF0);
 		table.addProgram(program1);
 		table.addProgram(program2);
 		
