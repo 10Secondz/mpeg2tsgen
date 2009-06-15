@@ -5,7 +5,6 @@ package Test;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.OutputStream;
 
 import API.SITableFactory;
@@ -14,11 +13,8 @@ import API.ServiceType;
 import API.StreamType;
 import API.TableType;
 import API.PSI.PAT;
-import API.PSI.PATProgram;
 import API.PSI.PMT;
-import API.PSI.PMTStream;
 import API.PSIP.MGT;
-import API.PSIP.MGTTable;
 import API.PSIP.TVCT;
 import API.PSIP.TVCTChannel;
 import API.Transport.TransportStreamProducer;

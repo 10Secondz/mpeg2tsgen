@@ -194,20 +194,20 @@ public class PATDefaultImpl extends SITableAbstractImpl implements PAT {
 	@Override
 	public String toXMLString(int base_space) {
 		String str = new String();
-		str += (MyUTIL.whiteSpaceStr(base_space)+"<PAT_section>");
-		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<table_id>"+TableID.PROGRAM_ASSOCIATION_TABLE.getValue()+"</table_id>");
-		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<transport_stream_id>"+transport_stream_id+"</transport_stream_id>");
-		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<version_number>"+version_number+"</version_number>");
+		str += (MyUTIL.whiteSpaceStr(base_space)+"<PAT_section>\n");
+		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<table_id>"+TableID.PROGRAM_ASSOCIATION_TABLE.getValue()+"</table_id>\n");
+		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<transport_stream_id>"+transport_stream_id+"</transport_stream_id>\n");
+		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<version_number>"+version_number+"</version_number>\n");
 		
 		if (getProgramSize() > 0) {
-			str += (MyUTIL.whiteSpaceStr(base_space+2)+"<ProgramLoop>");
+			str += (MyUTIL.whiteSpaceStr(base_space+2)+"<ProgramLoop>\n");
 			Iterator<PATProgram> it = getPrograms();
 			while(it.hasNext())
 				str += it.next().toXMLString(base_space);
-			str += (MyUTIL.whiteSpaceStr(base_space+2)+"</ProgramLoop>");
+			str += (MyUTIL.whiteSpaceStr(base_space+2)+"</ProgramLoop>\n");
 		}
 
-		str += (MyUTIL.whiteSpaceStr(base_space)+"</PAT_section>");
+		str += (MyUTIL.whiteSpaceStr(base_space)+"</PAT_section>\n");
 		return str;
 	}
 
