@@ -80,13 +80,13 @@ public class PATProgramDefaultImpl implements PATProgram {
 	@Override
 	public String toXMLString(int base_space) {
 		String str = new String();
-		str += (MyUTIL.whiteSpaceStr(base_space)+"<PATProgram>");
-		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<program_number>" + program_number + "</program_number>");
+		str += (MyUTIL.whiteSpaceStr(base_space)+"<PATProgram>\n");
+		str += (MyUTIL.whiteSpaceStr(base_space+2)+"<program_number>" + program_number + "</program_number>\n");
 		if (program_number == 0)
-			str += (MyUTIL.whiteSpaceStr(base_space+2)+"<network_PID>" + pid + "</network_PID>");
+			str += (MyUTIL.whiteSpaceStr(base_space+2)+"<network_PID>" + pid + "</network_PID>\n");
 		else
-			str += (MyUTIL.whiteSpaceStr(base_space+2)+"<program_map_PID>" + pid + "</program_map_PID>");
-		str += (MyUTIL.whiteSpaceStr(base_space)+"</PATProgram>");
+			str += (MyUTIL.whiteSpaceStr(base_space+2)+"<program_map_PID>" + pid + "</program_map_PID>\n");
+		str += (MyUTIL.whiteSpaceStr(base_space)+"</PATProgram>\n");
 		return str;
 	}
 

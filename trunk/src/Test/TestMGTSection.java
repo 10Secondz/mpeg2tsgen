@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import API.SITableFactory;
 import API.Section;
-import API.ServiceType;
 import API.TableType;
 import flavor.BuffBitstream;
 import flavor.IBitstream;

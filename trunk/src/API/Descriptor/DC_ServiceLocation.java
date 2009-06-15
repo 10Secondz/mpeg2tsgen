@@ -3,6 +3,8 @@
  */
 package API.Descriptor;
 
+import API.StreamType;
+
 
 /**
  * @author SungHun Park (dr.superchamp@gmail.com)
@@ -32,7 +34,7 @@ public interface DC_ServiceLocation extends DescriptorContent {
 	 * @param index
 	 * @return
 	 */
-	int getStreamTypeAt(int index);
+	StreamType getStreamTypeAt(int index);
 	
 	/**
 	 * return a value of 'elementary_PID'.
@@ -55,7 +57,7 @@ public interface DC_ServiceLocation extends DescriptorContent {
 	 * @param lang_code
 	 * @return
 	 */
-	boolean setElementAt(int index, int stream_type, int elementary_PID, int lang_code);
+	boolean setElementAt(int index, StreamType stream_type, int elementary_PID, int lang_code);
 	
 	/**
 	 * @param index
@@ -64,7 +66,7 @@ public interface DC_ServiceLocation extends DescriptorContent {
 	 * @param lang_code
 	 * @return
 	 */
-	boolean addElementAt(int index, int stream_type, int elementary_PID, int lang_code);
+	boolean addElementAt(int index, StreamType stream_type, int elementary_PID, int lang_code);
 	
 	/**
 	 * @param stream_type
@@ -72,7 +74,7 @@ public interface DC_ServiceLocation extends DescriptorContent {
 	 * @param lang_code
 	 * @return
 	 */
-	boolean addElement(int stream_type, int elementary_PID, int lang_code);
+	boolean addElement(StreamType stream_type, int elementary_PID, int lang_code);
 	
 	/**
 	 * @param index

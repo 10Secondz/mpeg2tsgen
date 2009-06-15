@@ -181,4 +181,82 @@ public class SectionFactory {
 		section.setCurrentNextIndicator(1); // default is current!
 		return section;
 	}
+	
+	/**
+	 * @param table
+	 * @param network_id
+	 * @return
+	 */
+	public static Section createNITSection(SITable table, int network_id,
+			int section_num, int last_section_num) {
+		Section section = new SectionDefaultImpl(table, 1);
+		section.setPrivateIndicator(1);
+		section.setReserved1(0x3);
+		section.setTableIdExtension(network_id);
+		section.setReserved2(0x3);
+		section.setVersionNumber(table.getTableVersion());
+		section.setCurrentNextIndicator(1); // default is current!
+		section.setSectionNumber(section_num);
+		section.setLastSectionNumber(last_section_num);
+		return section;
+	}
+	
+	
+	/**
+	 * @param table
+	 * @param network_id
+	 * @return
+	 */
+	public static Section createBATSection(SITable table, int bouquet_id,
+			int section_num, int last_section_num) {
+		Section section = new SectionDefaultImpl(table, 1);
+		section.setPrivateIndicator(1);
+		section.setReserved1(0x3);
+		section.setTableIdExtension(bouquet_id);
+		section.setReserved2(0x3);
+		section.setVersionNumber(table.getTableVersion());
+		section.setCurrentNextIndicator(1); // default is current!
+		section.setSectionNumber(section_num);
+		section.setLastSectionNumber(last_section_num);
+		return section;
+	}
+	
+	/**
+	 * @param table
+	 * @param ts_id
+	 * @return
+	 */
+	public static Section createSDTSection(SITable table, int ts_id,
+			int section_num, int last_section_num) {
+		Section section = new SectionDefaultImpl(table, 1);
+		section.setPrivateIndicator(1);
+		section.setReserved1(0x3);
+		section.setTableIdExtension(ts_id);
+		section.setReserved2(0x3);
+		section.setVersionNumber(table.getTableVersion());
+		section.setCurrentNextIndicator(1); // default is current!
+		section.setSectionNumber(section_num);
+		section.setLastSectionNumber(last_section_num);
+		return section;
+	}
+	
+	/**
+	 * @param table
+	 * @param ts_id
+	 * @return
+	 */
+	public static Section createDVBEITSection(SITable table, int service_id,
+			int section_num, int last_section_num) {
+		Section section = new SectionDefaultImpl(table, 1);
+		section.setPrivateIndicator(1);
+		section.setReserved1(0x3);
+		section.setTableIdExtension(service_id);
+		section.setReserved2(0x3);
+		section.setVersionNumber(table.getTableVersion());
+		section.setCurrentNextIndicator(1); // default is current!
+		section.setSectionNumber(section_num);
+		section.setLastSectionNumber(last_section_num);
+		return section;
+	}
+	
 }

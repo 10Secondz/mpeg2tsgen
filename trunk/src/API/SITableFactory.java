@@ -1,5 +1,12 @@
 package API;
 
+import API.DVB.DVBEITEvent;
+import API.DVB.EITPF;
+import API.DVB.EITSchedule;
+import API.DVB.NIT;
+import API.DVB.NITTransportStream;
+import API.DVB.SDT;
+import API.DVB.SDTService;
 import API.PSI.PAT;
 import API.PSI.PATProgram;
 import API.PSI.PMT;
@@ -20,6 +27,13 @@ import API.PSIP.TVCTChannel;
 /**
  * 
  */
+import Core.DVB.DVBEITEventImpl;
+import Core.DVB.EITPFImpl;
+import Core.DVB.EITScheduleImpl;
+import Core.DVB.NITImpl;
+import Core.DVB.NITTransportStreamImpl;
+import Core.DVB.SDTImpl;
+import Core.DVB.SDTServiceImpl;
 import Core.PSI.PATDefaultImpl;
 import Core.PSI.PATProgramDefaultImpl;
 import Core.PSI.PMTDefaultImpl;
@@ -279,5 +293,122 @@ public class SITableFactory {
 		ett.setETTTableIdExtension(ETT_table_id_extension);
 		ett.setETMId(ETM_id);
 		return ett;
+	}
+	
+	/**
+	 * @param b_actual
+	 * @param network_id
+	 * @return
+	 */
+	public static NIT createNIT(boolean b_actual, int table_version, int network_id) {
+		NIT nit = new NITImpl();
+		nit.setIsActual(b_actual);
+		nit.setNetworkId(network_id);
+		nit.setVersionNumber(table_version);
+		return nit;
+	}
+	
+	/**
+	 * @param ts_id
+	 * @param org_net_id
+	 * @return
+	 */
+	public static NITTransportStream createNITTransportStream(int ts_id, int org_net_id) {
+		NITTransportStream nitts = new NITTransportStreamImpl();
+		nitts.setTransportStreamId(ts_id);
+		nitts.setOrgNetworkId(org_net_id);
+		return nitts;
+	}
+	
+	/**
+	 * @param b_actual
+	 * @param table_version
+	 * @param ts_id
+	 * @param org_net_id
+	 * @return
+	 */
+	public static SDT createSDT(boolean b_actual, int table_version, int ts_id, int org_net_id) {
+		SDT sdt = new SDTImpl();
+		sdt.setIsActual(b_actual);
+		sdt.setVersionNumber(table_version);
+		sdt.setTransportStreamId(ts_id);
+		sdt.setOrgNetworkId(org_net_id);
+		return sdt;
+	}
+	
+	/**
+	 * @param service_id
+	 * @param eit_pf_flag
+	 * @param eit_sched_flag
+	 * @param run_status
+	 * @param ca_mode
+	 * @return
+	 */
+	public static SDTService createSDTService(int service_id, int eit_pf_flag, int eit_sched_flag,
+			int run_status, int ca_mode) {
+		SDTService sdtsvc = new SDTServiceImpl();
+		sdtsvc.setServiceId(service_id);
+		sdtsvc.setEitPfFlag(eit_pf_flag);
+		sdtsvc.setEitSchedFlag(eit_sched_flag);
+		sdtsvc.setRunningStatus(run_status);
+		sdtsvc.setFreeCaMode(ca_mode);
+		return sdtsvc;
+	}
+	
+	/**
+	 * @param b_actual
+	 * @param table_version
+	 * @param service_id
+	 * @param ts_id
+	 * @param org_net_id
+	 * @return
+	 */
+	public static EITPF createEITPF(boolean b_actual, int table_version, int service_id,
+			int ts_id, int org_net_id) {
+		EITPF eit = new EITPFImpl();
+		eit.setIsActual(b_actual);
+		eit.setVersionNumber(table_version);
+		eit.setServiceId(service_id);
+		eit.setTransportStreamId(ts_id);
+		eit.setOrgNetworkId(org_net_id);
+		return eit;
+	}
+	
+	/**
+	 * @param b_actual
+	 * @param table_version
+	 * @param service_id
+	 * @param ts_id
+	 * @param org_net_id
+	 * @return
+	 */
+	public static EITSchedule createEITSchedule(boolean b_actual, int table_version, int service_id,
+			int ts_id, int org_net_id) {
+		EITSchedule eit = new EITScheduleImpl();
+		eit.setIsActual(b_actual);
+		eit.setVersionNumber(table_version);
+		eit.setServiceId(service_id);
+		eit.setTransportStreamId(ts_id);
+		eit.setOrgNetworkId(org_net_id);
+		return eit;
+	}
+	
+	/**
+	 * @param event_id
+	 * @param start_time
+	 * @param duration
+	 * @param run_status
+	 * @param free_ca_mode
+	 * @return
+	 */
+	public static DVBEITEvent createDVBEITEvent(int event_id, long start_time,
+			int duration, int run_status, int free_ca_mode) {
+		DVBEITEvent event = new DVBEITEventImpl();
+		event.setEventId(event_id);
+		event.setStartTime(start_time);
+		event.setDuration(duration);
+		event.setRunningStatus(run_status);
+		event.setFreeCaMode(free_ca_mode);
+		return event;
 	}
 }

@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import API.BitOutputStream;
 import API.MyUTIL;
+import API.StreamType;
 import API.Descriptor.DC_ServiceLocation;
 
 /**
@@ -20,11 +21,11 @@ public class ServiceLocationImpl implements DC_ServiceLocation {
 	List<ServiceElement> elements = new Vector<ServiceElement>();
 
 	class ServiceElement {
-		protected int stream_type;
+		protected StreamType stream_type;
 		protected int elementary_PID;
 		protected int ISO_639_language_code;
 		
-		ServiceElement(int st, int pid, int lang) {
+		ServiceElement(StreamType st, int pid, int lang) {
 			stream_type = st;
 			elementary_PID = pid;
 			ISO_639_language_code = lang;
@@ -43,7 +44,7 @@ public class ServiceLocationImpl implements DC_ServiceLocation {
 	 * @see API.Descriptor.DC_ServiceLocation#addElement(int, int, int)
 	 */
 	@Override
-	public boolean addElement(int stream_type, int elementary_PID,
+	public boolean addElement(StreamType stream_type, int elementary_PID,
 			int lang_code) {
 		return elements.add(new ServiceElement(stream_type, elementary_PID, lang_code));
 	}
@@ -52,7 +53,7 @@ public class ServiceLocationImpl implements DC_ServiceLocation {
 	 * @see API.Descriptor.DC_ServiceLocation#addElementAt(int, int, int, int)
 	 */
 	@Override
-	public boolean addElementAt(int index, int stream_type, int elementary_PID,
+	public boolean addElementAt(int index, StreamType stream_type, int elementary_PID,
 			int lang_code) {
 		if (index < 0 || index > elements.size())
 			return false;
@@ -108,9 +109,9 @@ public class ServiceLocationImpl implements DC_ServiceLocation {
 	 * @see API.Descriptor.DC_ServiceLocation#getStreamTypeAt(int)
 	 */
 	@Override
-	public int getStreamTypeAt(int index) {
+	public StreamType getStreamTypeAt(int index) {
 		if (index < 0 || index >= elements.size())
-			return -1;
+			return StreamType.ISO_IEC_Reserved;
 		return elements.get(index).stream_type;
 	}
 
@@ -137,7 +138,7 @@ public class ServiceLocationImpl implements DC_ServiceLocation {
 	 * @see API.Descriptor.DC_ServiceLocation#setElementAt(int, int, int, int)
 	 */
 	@Override
-	public boolean setElementAt(int index, int stream_type, int elementary_PID,
+	public boolean setElementAt(int index, StreamType stream_type, int elementary_PID,
 			int lang_code) {
 		if (index < 0 || index >= elements.size())
 			return false;
@@ -166,7 +167,7 @@ public class ServiceLocationImpl implements DC_ServiceLocation {
 			Iterator<ServiceElement> it = elements.iterator();
 			while(it.hasNext()) {
 				ServiceElement element = it.next();
-				os.writeFromLSB(element.stream_type, 8);
+				os.writeFromLSB(element.stream_type.getValue(), 8);
 				os.writeFromLSB(0xFF, 3);
 				os.writeFromLSB(element.elementary_PID, 13);
 				os.writeFromLSB(element.ISO_639_language_code, 24);

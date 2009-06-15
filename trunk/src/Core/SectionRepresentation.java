@@ -17,6 +17,7 @@ public interface SectionRepresentation {
 	boolean isMultiSection();
 
 	/**
+	 * max_stream_size_in_section = 1012 - ((followings of 'section length') + desc loops.)
 	 * return total section number
 	 * @return
 	 */

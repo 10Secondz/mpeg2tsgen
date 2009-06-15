@@ -268,6 +268,15 @@ public class TransportStreamProducer implements Runnable {
 		notify();
 	}
 	
+	public void join() {
+		try {
+			runningThread.join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void debugDump() {
 		Iterator<Map.Entry<Long,Integer>> it = schedule_tree.entrySet().iterator();
 		System.out.println("CurrentTime: "+current_time_ms);
